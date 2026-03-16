@@ -2,30 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LifeGroup Invitation</title>
+  <title>LifeGroup Invitation | A Faith Driven Life</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Google Fonts (same family feel as site) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
   <style>
     :root {
-      --bg-gradient-start: #0f2d3f;
-      --bg-gradient-end: #1e4f73;
-      --accent-gold: #f4c663;
-      --accent-gold-soft: #f9df9b;
-      --text-main: #0b1720;
-      --text-muted: #5a6b7a;
-      --card-bg: #ffffff;
-      --border-soft: rgba(255, 255, 255, 0.35);
-      --shadow-soft: 0 18px 40px rgba(4, 20, 35, 0.35);
-      --radius-lg: 16px;
+      /* Based on afaithdrivenlife.com look */
+      --afdl-teal: #1d5c63;
+      --afdl-deep: #163046;
+      --afdl-gold: #f4b400;
+      --afdl-soft-gold: #ffe7a3;
+      --afdl-bg: #f6f7fb;
+      --afdl-surface: #ffffff;
+      --afdl-text-main: #1b2430;
+      --afdl-text-muted: #6c7482;
+      --radius-lg: 18px;
+      --radius-md: 12px;
       --radius-pill: 999px;
-      --transition-fast: 0.2s ease-out;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.12);
+      --shadow-subtle: 0 10px 24px rgba(0, 0, 0, 0.06);
       --page-max-width: 900px;
+      --transition-fast: 0.2s ease-out;
     }
 
     * {
@@ -41,8 +44,8 @@
 
     body {
       font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #274f97 0, #0f2335 25%, #081320 55%, #050912 100%);
-      color: var(--text-main);
+      background: radial-gradient(circle at top, #fdfdfd 0, var(--afdl-bg) 40%, #e4e7f2 100%);
+      color: var(--afdl-text-main);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -57,23 +60,23 @@
 
     .page {
       position: relative;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(240, 246, 255, 0.98));
+      background: var(--afdl-surface);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-soft);
-      padding: 32px 32px 28px;
+      padding: 28px 28px 24px;
       overflow: hidden;
       min-height: calc(100vh - 64px);
+      border: 1px solid rgba(18, 38, 63, 0.06);
     }
 
     .page::before {
       content: "";
       position: absolute;
-      inset: -40%;
+      inset: -30%;
       background:
-        radial-gradient(circle at 0% 0%, rgba(244, 198, 99, 0.28) 0, transparent 55%),
-        radial-gradient(circle at 100% 20%, rgba(151, 199, 255, 0.6) 0, transparent 60%),
-        radial-gradient(circle at 50% 100%, rgba(6, 54, 93, 0.55) 0, transparent 60%);
-      opacity: 0.75;
+        radial-gradient(circle at 0% 0%, rgba(244, 180, 0, 0.1) 0, transparent 55%),
+        radial-gradient(circle at 100% 20%, rgba(29, 92, 99, 0.18) 0, transparent 55%);
+      opacity: 0.8;
       pointer-events: none;
       z-index: 0;
     }
@@ -83,19 +86,44 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 22px;
       min-height: 100%;
     }
 
+    /* Top site-style bar */
+    .site-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+      color: var(--afdl-text-muted);
+    }
+
+    .site-brand {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--afdl-deep);
+      font-size: 0.75rem;
+    }
+
+    .site-tagline {
+      font-size: 0.78rem;
+      color: var(--afdl-text-muted);
+    }
+
+    /* Header like hero strip on site */
     .header {
-      border-radius: 18px;
-      padding: 20px 24px 18px;
-      background: linear-gradient(120deg, rgba(15, 82, 186, 0.96), rgba(20, 120, 180, 0.96), rgba(244, 198, 99, 0.95));
+      border-radius: var(--radius-md);
+      padding: 20px 22px 18px;
+      background: linear-gradient(120deg, var(--afdl-deep), var(--afdl-teal));
       color: #ffffff;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: var(--shadow-subtle);
       position: relative;
       overflow: hidden;
     }
@@ -103,66 +131,85 @@
     .header::after {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -40%;
       background:
         radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.32) 0, transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(3, 26, 58, 0.6) 0, transparent 60%);
-      mix-blend-mode: overlay;
-      opacity: 0.85;
+        radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.45) 0, transparent 60%);
+      mix-blend-mode: soft-light;
+      opacity: 0.9;
       pointer-events: none;
     }
 
     .header-topline {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      opacity: 0.9;
+      opacity: 0.96;
       font-weight: 600;
     }
 
     .header-subtitle-line {
-      font-size: 0.9rem;
-      max-width: 720px;
+      font-size: 0.92rem;
+      max-width: 640px;
       line-height: 1.5;
       font-weight: 500;
+      opacity: 0.96;
     }
 
     .main-title {
       font-family: "Montserrat", system-ui, sans-serif;
       font-weight: 800;
-      font-size: clamp(1.6rem, 3.3vw, 2.1rem);
+      font-size: clamp(1.7rem, 3.4vw, 2.2rem);
       line-height: 1.25;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-top: 4px;
-      max-width: 640px;
+      max-width: 670px;
     }
 
     .main-title span.highlight {
-      color: #ffe9b8;
+      color: var(--afdl-soft-gold);
     }
 
+    /* Video */
+    .video-section {
+      background: #f9fafc;
+      border-radius: var(--radius-md);
+      padding: 10px;
+      border: 1px solid rgba(19, 42, 70, 0.08);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      background: #000000;
+    }
+
+    /* Hosted by */
     .hosted-by {
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--afdl-text-muted);
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
     }
 
     .hosted-by span.label {
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-size: 0.7rem;
-      color: #7a8da0;
+      color: #8a95a3;
     }
 
     .hosted-by span.value {
-      color: var(--text-main);
+      color: var(--afdl-deep);
       font-weight: 700;
     }
 
+    /* Info grid */
     .info-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -170,10 +217,10 @@
     }
 
     .info-card {
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 14px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
       padding: 16px 18px 14px;
-      border: 1px solid rgba(11, 23, 32, 0.08);
+      border: 1px solid rgba(19, 42, 70, 0.08);
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -184,7 +231,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-weight: 700;
-      color: #1a4d7a;
+      color: var(--afdl-teal);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -193,13 +240,13 @@
     .info-label-dot {
       width: 4px;
       height: 4px;
-      background: #f4c663;
+      background: var(--afdl-gold);
       border-radius: 50%;
     }
 
     .info-content {
       font-size: 0.9rem;
-      color: var(--text-main);
+      color: var(--afdl-text-main);
       line-height: 1.6;
       font-weight: 500;
     }
@@ -208,38 +255,27 @@
       font-weight: 700;
     }
 
+    /* Scripture box */
     .scripture-section {
-      background: linear-gradient(135deg, rgba(13, 77, 128, 0.06), rgba(244, 198, 99, 0.06));
-      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(29, 92, 99, 0.06), rgba(244, 180, 0, 0.06));
+      border-radius: var(--radius-md);
       padding: 16px 18px 14px;
-      border: 1px solid rgba(15, 55, 95, 0.12);
+      border: 1px solid rgba(22, 48, 70, 0.12);
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
       gap: 16px;
       align-items: flex-start;
     }
 
-    .scripture-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-weight: 700;
-      color: #1a4d7a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-
     .scripture-label-pill {
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: var(--radius-pill);
-      background: rgba(15, 82, 186, 0.07);
-      border: 1px solid rgba(15, 82, 186, 0.18);
+      background: rgba(29, 92, 99, 0.08);
+      border: 1px solid rgba(29, 92, 99, 0.28);
       font-size: 0.65rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #0f3152;
+      color: var(--afdl-deep);
       font-weight: 600;
     }
 
@@ -255,10 +291,10 @@
       content: "“";
       position: absolute;
       left: 0;
-      top: -12px;
-      font-size: 2.6rem;
+      top: -10px;
+      font-size: 2.4rem;
       line-height: 1;
-      color: rgba(15, 82, 186, 0.32);
+      color: rgba(29, 92, 99, 0.3);
       font-family: "Georgia", serif;
     }
 
@@ -271,44 +307,29 @@
       font-weight: 700;
     }
 
-    .scripture-body {
-      font-weight: 500;
-    }
-
+    /* Description */
     .description-section {
-      background: rgba(255, 255, 255, 0.98);
-      border-radius: 14px;
+      background: #ffffff;
+      border-radius: var(--radius-md);
       padding: 16px 18px 14px;
-      border: 1px solid rgba(11, 23, 32, 0.06);
-      font-size: 0.92rem;
-      color: var(--text-main);
-      line-height: 1.7;
+      border: 1px solid rgba(19, 42, 70, 0.06);
+      font-size: 0.94rem;
+      color: var(--afdl-text-main);
+      line-height: 1.8;
     }
 
-    .video-section {
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 14px;
-      padding: 14px;
-      border: 1px solid rgba(11, 23, 32, 0.08);
-    }
-
-    .video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      background: #000000;
-    }
-
+    /* Footer (similar tone to site footer text) */
     .footer {
       margin-top: auto;
-      font-size: 0.76rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: var(--afdl-text-muted);
       display: flex;
       flex-wrap: wrap;
       gap: 6px 14px;
       align-items: center;
       justify-content: space-between;
+      padding-top: 4px;
+      border-top: 1px solid rgba(19, 42, 70, 0.06);
     }
 
     .footer-main {
@@ -316,14 +337,14 @@
     }
 
     .footer-meta {
-      font-size: 0.74rem;
-      opacity: 0.95;
+      font-size: 0.76rem;
     }
 
     .footer-separator {
-      opacity: 0.38;
+      opacity: 0.4;
     }
 
+    /* Animation helpers */
     .fade-element {
       opacity: 0;
       transform: translateY(18px);
@@ -342,8 +363,8 @@
 
       .page {
         min-height: auto;
-        padding: 22px 18px 18px;
-        border-radius: 18px;
+        padding: 22px 16px 18px;
+        border-radius: 16px;
       }
 
       .info-grid,
@@ -355,12 +376,8 @@
         padding: 16px 16px 14px;
       }
 
-      .header-topline {
-        font-size: 0.7rem;
-      }
-
       .main-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
       }
 
       .scripture-text {
@@ -378,6 +395,7 @@
       }
     }
 
+    /* Print: A4 portrait, clean like your site pages */
     @media print {
       @page {
         size: A4 portrait;
@@ -404,6 +422,7 @@
         box-shadow: none;
         border-radius: 0;
         padding: 10mm 12mm 8mm;
+        border: none;
       }
 
       .page::before {
@@ -415,12 +434,12 @@
       }
 
       .fade-element,
-      .scripture-reveal,
-      .video-section {
+      .scripture-reveal {
         opacity: 1 !important;
         transform: none !important;
       }
 
+      /* hide video for print */
       .video-section {
         display: none !important;
       }
@@ -431,6 +450,12 @@
   <div class="page-wrapper">
     <main class="page" aria-label="LifeGroup Invitation">
       <div class="page-inner">
+        <div class="site-bar">
+          <div class="site-brand">A FAITH DRIVEN LIFE</div>
+          <div class="site-tagline">Walking Boldly in Truth</div>
+        </div>
+
+        <!-- Header -->
         <header class="header fade-element">
           <div class="header-topline">
             LIFEGROUP INVITATION
@@ -443,6 +468,7 @@
           </h1>
         </header>
 
+        <!-- Video -->
         <section class="video-section fade-element" aria-label="LifeGroup video">
           <video class="video" controls autoplay muted playsinline preload="metadata">
             <source src="./grok-video-77e91dd7-bac4-4a0b-bf27-9f2a1a741a49 (1).mp4" type="video/mp4" />
@@ -450,6 +476,7 @@
           </video>
         </section>
 
+        <!-- Hosted by -->
         <section class="fade-element" aria-label="Hosts">
           <p class="hosted-by">
             <span class="label">Hosted by:</span>
@@ -457,6 +484,7 @@
           </p>
         </section>
 
+        <!-- Info grid -->
         <section class="info-grid" aria-label="Date, Time and Venue">
           <article class="info-card fade-element">
             <div class="info-label">
@@ -484,11 +512,10 @@
           </article>
         </section>
 
+        <!-- Scripture -->
         <section class="scripture-section scripture-reveal" aria-label="Core Scripture">
           <div>
-            <div class="scripture-label">
-              <span class="scripture-label-pill">CORE&nbsp;SCRIPTURE</span>
-            </div>
+            <span class="scripture-label-pill">CORE&nbsp;SCRIPTURE</span>
           </div>
           <div class="scripture-text">
             <div class="scripture-reference">
@@ -500,12 +527,14 @@
           </div>
         </section>
 
+        <!-- Description -->
         <section class="description-section fade-element" aria-label="Description">
           <p>
             We're excited to launch our new LifeGroup - a safe and welcoming community where we connect authentically, grow in faith, pray together, encourage one another, and renew our minds in God's Word. Everyone is welcome, no matter where you are on your journey. Come as you are!
           </p>
         </section>
 
+        <!-- Footer -->
         <footer class="footer fade-element">
           <div class="footer-main">
             3Ci Church LifeGroup - Hosted by Carl &amp; Wilma
@@ -526,12 +555,14 @@
 
       const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "power2.out" } });
 
+      // Header fade-in
       tl.fromTo(
         ".header",
         { opacity: 0, y: 26 },
         { opacity: 1, y: 0 }
       );
 
+      // Other content
       tl.fromTo(
         ".fade-element:not(.header)",
         { opacity: 0, y: 20 },
@@ -543,6 +574,7 @@
         "-=0.25"
       );
 
+      // Scripture reveal
       tl.fromTo(
         ".scripture-reveal",
         { opacity: 0, scale: 0.96 },
@@ -551,6 +583,5 @@
       );
     });
   </script>
-  <!-- build trigger 1 -->
 </body>
 </html>
