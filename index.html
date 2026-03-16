@@ -49,7 +49,6 @@
       padding: 24px;
     }
 
-    /* A4 layout for desktop while remaining responsive */
     .page-wrapper {
       width: 100%;
       max-width: var(--page-max-width);
@@ -66,7 +65,6 @@
       min-height: calc(100vh - 64px);
     }
 
-    /* Soft overlay glow */
     .page::before {
       content: "";
       position: absolute;
@@ -89,7 +87,6 @@
       min-height: 100%;
     }
 
-    /* Header */
     .header {
       border-radius: 18px;
       padding: 20px 24px 18px;
@@ -123,11 +120,10 @@
       font-weight: 600;
     }
 
-    .header-subtitle {
+    .header-subtitle-line {
       font-size: 0.9rem;
-      max-width: 620px;
+      max-width: 720px;
       line-height: 1.5;
-      opacity: 0.98;
       font-weight: 500;
     }
 
@@ -146,13 +142,6 @@
       color: #ffe9b8;
     }
 
-    .header-tagline {
-      font-size: 0.9rem;
-      opacity: 0.93;
-      max-width: 520px;
-    }
-
-    /* Host line */
     .hosted-by {
       font-size: 0.9rem;
       font-weight: 600;
@@ -174,7 +163,6 @@
       font-weight: 700;
     }
 
-    /* Two-column info section */
     .info-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -220,7 +208,6 @@
       font-weight: 700;
     }
 
-    /* Scripture box */
     .scripture-section {
       background: linear-gradient(135deg, rgba(13, 77, 128, 0.06), rgba(244, 198, 99, 0.06));
       border-radius: 14px;
@@ -288,7 +275,6 @@
       font-weight: 500;
     }
 
-    /* Description */
     .description-section {
       background: rgba(255, 255, 255, 0.98);
       border-radius: 14px;
@@ -299,7 +285,6 @@
       line-height: 1.7;
     }
 
-    /* Video */
     .video-section {
       background: rgba(255, 255, 255, 0.96);
       border-radius: 14px;
@@ -315,7 +300,6 @@
       background: #000000;
     }
 
-    /* Footer */
     .footer {
       margin-top: auto;
       font-size: 0.76rem;
@@ -340,15 +324,6 @@
       opacity: 0.38;
     }
 
-    /* Utility spacing for the header subtitle line */
-    .header-subtitle-line {
-      font-size: 0.9rem;
-      max-width: 720px;
-      line-height: 1.5;
-      font-weight: 500;
-    }
-
-    /* Fade and reveal base (for GSAP) */
     .fade-element {
       opacity: 0;
       transform: translateY(18px);
@@ -359,7 +334,6 @@
       transform: scale(0.96);
     }
 
-    /* Responsive tweaks */
     @media (max-width: 768px) {
       body {
         padding: 12px;
@@ -404,7 +378,6 @@
       }
     }
 
-    /* PRINT STYLES – A4 portrait, no animations */
     @media print {
       @page {
         size: A4 portrait;
@@ -437,12 +410,10 @@
         display: none;
       }
 
-      /* Ensure solid white card background for print */
       .page-inner {
         background: #ffffff;
       }
 
-      /* Remove animations – ensure everything visible and untransformed */
       .fade-element,
       .scripture-reveal,
       .video-section {
@@ -450,15 +421,8 @@
         transform: none !important;
       }
 
-      /* Keep PDF clean (video doesn't print well) */
       .video-section {
         display: none !important;
-      }
-
-      a[href^="http"],
-      a[href^="whatsapp"] {
-        text-decoration: none;
-        color: inherit;
       }
     }
   </style>
@@ -467,7 +431,6 @@
   <div class="page-wrapper">
     <main class="page" aria-label="LifeGroup Invitation">
       <div class="page-inner">
-        <!-- Header -->
         <header class="header fade-element">
           <div class="header-topline">
             LIFEGROUP INVITATION
@@ -487,7 +450,6 @@
           </video>
         </section>
 
-        <!-- Hosted by -->
         <section class="fade-element" aria-label="Hosts">
           <p class="hosted-by">
             <span class="label">Hosted by:</span>
@@ -495,7 +457,6 @@
           </p>
         </section>
 
-        <!-- Info grid -->
         <section class="info-grid" aria-label="Date, Time and Venue">
           <article class="info-card fade-element">
             <div class="info-label">
@@ -523,7 +484,6 @@
           </article>
         </section>
 
-        <!-- Scripture -->
         <section class="scripture-section scripture-reveal" aria-label="Core Scripture">
           <div>
             <div class="scripture-label">
@@ -540,14 +500,12 @@
           </div>
         </section>
 
-        <!-- Description -->
         <section class="description-section fade-element" aria-label="Description">
           <p>
             We're excited to launch our new LifeGroup - a safe and welcoming community where we connect authentically, grow in faith, pray together, encourage one another, and renew our minds in God's Word. Everyone is welcome, no matter where you are on your journey. Come as you are!
           </p>
         </section>
 
-        <!-- Footer -->
         <footer class="footer fade-element">
           <div class="footer-main">
             3Ci Church LifeGroup - Hosted by Carl &amp; Wilma
@@ -563,20 +521,17 @@
   </div>
 
   <script>
-    // Wait for GSAP to be available and DOM ready
     window.addEventListener("DOMContentLoaded", function () {
       if (!window.gsap) return;
 
       const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "power2.out" } });
 
-      // Header fade-in
       tl.fromTo(
         ".header",
         { opacity: 0, y: 26 },
         { opacity: 1, y: 0 }
       );
 
-      // Sub-sections stagger
       tl.fromTo(
         ".fade-element:not(.header)",
         { opacity: 0, y: 20 },
@@ -588,7 +543,6 @@
         "-=0.25"
       );
 
-      // Scripture reveal with gentle scale
       tl.fromTo(
         ".scripture-reveal",
         { opacity: 0, scale: 0.96 },
@@ -597,5 +551,6 @@
       );
     });
   </script>
+  <!-- build trigger 1 -->
 </body>
 </html>
